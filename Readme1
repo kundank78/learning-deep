@@ -1,0 +1,30 @@
+# Real-Time License Plate Detection 
+ This code implementation analyzes images and video streams to identify license plates in different types of vehicles. 
+ The output is the text representation of any license plate characters.
+## Exaplanation
+OpenCV converts the input video into individual frames and sends the frames for vehicle recognition through vehicle_recognise.py using YOLO.
+Then, the output vehicle is sent to license_plate_recognition.py which detects license plate using YOLO.
+License plate recognition and vehicle detection have been done individually to remove any false positives.
+So, the matched zone is passed for character_segmentation.py which segments character indiviadually with padding using CNN.
+Then CNN is used to classify the character trained from standard MNSIT dataset in the file character_recognition.
+Output is displayed for character combination with maximum confidence.
+
+ 
+## Requirements
+* Python 3.5
+* Tensorflow
+* Keras 
+* OpenCV
+* Tesseract
+
+## Files:
+1. main.py - Starts the execution of model and outputs the number plate.
+2. camera.py - Captures the video from a local file or a Webcam.
+3. vechile_recognise.py - Detects and outputs a bounding box around the vehicle using Yolo 
+                          which is further passed for license plate recognition.
+4. license_recognise.py - Detects and outputs a bounding box around the license plate of vehicle.
+5. character_segmentation.py - Outputs bounding boxes around different characters of the license plate.
+6. character_recognition.py - Recognise the characters detected from character segmentation and outputs alphanumeric values.
+7. run_on_terminal.py - executes the model for video on terminal.
+8. run_on_host.py - executes the model on local host using flask.
+7. camera.py - takes input from webcam or a local video file outputs frames of the video.
